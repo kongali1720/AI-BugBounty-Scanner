@@ -1,0 +1,28 @@
+```yaml
+# Configuration for AI-Powered Bug Bounty Scanner plugins
+xss_scanner:
+  enabled: true
+  options:
+    timeout: 30
+    max_depth: 3
+    payloads: ["<script>alert(1)</script>", "<img src=x onerror=alert(1)>"]
+
+sqli_scanner:
+  enabled: true
+  options:
+    timeout: 20
+    payloads: ["' OR 1=1 --", "1' UNION SELECT NULL --"]
+
+jwt_scanner:
+  enabled: false
+  options:
+    timeout: 15
+    check_keys: ["none", "HS256"]
+
+secret_scanner:
+  enabled: true
+  options:
+    patterns:
+      - "AWS_ACCESS_KEY_ID=[A-Z0-9]{20}"
+      - "Bearer [A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+"
+```
